@@ -1,7 +1,10 @@
+html {
+  overflow: hidden;
+}
+
 .App {
   text-align: center;
 }
-
 
 .App-header {
   height: 60px;
