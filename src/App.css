@@ -26,7 +26,8 @@ html {
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+  -webkit-animation: App-logo-spin infinite 20s linear;
+          animation: App-logo-spin infinite 20s linear;
   height: 60px;
 }
 
@@ -38,9 +39,14 @@ html {
   font-size: large;
 }
 
+@-webkit-keyframes App-logo-spin {
+  from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
 }
 
 
@@ -82,14 +88,6 @@ header a, a:visited {
     from {background-position:0 0;}
     to {background-position:-10000px 5000px;}
 }
-@-moz-keyframes move-twink-back {
-    from {background-position:0 0;}
-    to {background-position:-10000px 5000px;}
-}
-@-ms-keyframes move-twink-back {
-    from {background-position:0 0;}
-    to {background-position:-10000px 5000px;}
-}
 
 @keyframes move-clouds-back {
     from {background-position:0 0;}
@@ -97,14 +95,6 @@ header a, a:visited {
 }
 @-webkit-keyframes move-clouds-back {
     from {background-position:0 0;}
-    to {background-position:10000px 0;}
-}
-@-moz-keyframes move-clouds-back {
-    from {background-position:0 0;}
-    to {background-position:10000px 0;}
-}
-@-ms-keyframes move-clouds-back {
-    from {background-position: 0;}
     to {background-position:10000px 0;}
 }
 
@@ -127,9 +117,6 @@ header a, a:visited {
 .twinkling{
   background:transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
   z-index:1;
-  -moz-animation:move-twink-back 200s linear infinite;
-  -ms-animation:move-twink-back 200s linear infinite;
-  -o-animation:move-twink-back 200s linear infinite;
   -webkit-animation:move-twink-back 200s linear infinite;
   animation:move-twink-back 200s linear infinite;
 }
@@ -137,9 +124,6 @@ header a, a:visited {
 .clouds{
     background:transparent url(http://www.script-tutorials.com/demos/360/images/clouds3.png) repeat top center;
     z-index:3;
-  -moz-animation:move-clouds-back 200s linear infinite;
-  -ms-animation:move-clouds-back 200s linear infinite;
-  -o-animation:move-clouds-back 200s linear infinite;
   -webkit-animation:move-clouds-back 200s linear infinite;
   animation:move-clouds-back 200s linear infinite;
 }
