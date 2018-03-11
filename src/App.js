@@ -5,24 +5,29 @@ import './App.css';
 class App extends Component {
 
   state = {
-    step: 10,
+    step: 30,
     x: 200,
+    map: {
+      ArrowLeft: 'left',
+      ArrowRight: 'right'
+    },
     calcStep: {
-      KeyJ: { axis: "x", sign: -1 },
-      KeyL: { axis: "x", sign: 1 },
+      left: { axis: "x", sign: -1 },
+      right: { axis: "x", sign: 1 },
     }
   }
 
   updatePosition = (e) => {
-    const { calcStep, x, step } = this.state
-    if (!calcStep[e.code]) return
-    const { [e.code]: { sign } } = calcStep
+    const { calcStep, x, step, map } = this.state
+    const { [e.code]: mapName } = map
+    if (!calcStep[mapName]) return
+    const { [mapName]: { sign } } = calcStep
     this.setState({ x: x + (step*sign)})
   }
 
   componentDidMount() {
     const body = document.querySelector("body")
-    body.addEventListener("keypress", this.updatePosition)
+    body.addEventListener("keydown", this.updatePosition)
   }
 
 
