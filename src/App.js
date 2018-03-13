@@ -7,7 +7,6 @@ import Twinkling from './components/twinkling'
 import Stars from './components/stars'
 import ShipStage from './components/shipStage'
 import AlienStage from './components/alienStage'
-const aliens = [1,2,3,4,5,6,7,8,9,10,1,12,13,14,15,16,17,18,19,20]
 
 class App extends Component {
 
@@ -19,7 +18,7 @@ class App extends Component {
         <Clouds />
         <Twinkling />
         <Stars />
-        <AlienStage aliens={aliens}/>
+        <AlienStage/>
         <ShipStage />
       </div>
     );
