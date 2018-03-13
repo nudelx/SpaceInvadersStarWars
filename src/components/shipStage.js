@@ -32,6 +32,7 @@ export default class ShipStage extends Component {
 
   fireBullet = () => {
     const bulletId = this.state.bulletId + 1
+    if (this.state.bullets.length > 10 ) return
     this.state.bullets.push({id: bulletId})
     // this.setState({ bullets: this.state.bullets.concat({id: bulletId}), })
     this.setState({  bulletId: bulletId })  // mutation to avoid array loop in concat
