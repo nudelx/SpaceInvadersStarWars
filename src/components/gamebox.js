@@ -47,11 +47,12 @@ export default class GameBox extends Component {
   }
 
   render() {
+    console.log('game box')
     const { x, y, stageHeight, bullets } = this.state
     return (
       <Stage>
         <Ship x={x} y={y}/>
-        {stageHeight && bullets.map( b => <Bullet id={b.id} key={b.id} x={x+22} y={y} stageHeight={stageHeight}  removeBulletFromStage={this.removeBulletFromStage} />)}
+        {stageHeight && bullets.map( b => <Bullet id={b.id} key={b.id} x={x+22} y={y} stageHeight={stageHeight} removeBulletFromStage={this.removeBulletFromStage} />)}
       </Stage>
     )
   }

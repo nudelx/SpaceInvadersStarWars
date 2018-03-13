@@ -19,7 +19,7 @@ export default class Bullet extends Component {
 
   calcIfRemove = () => {
     if (this.state.y > this.state.stageHeight) {
-      clearInterval(this.timer)
+        clearInterval(this.timer)
       this.props.removeBulletFromStage(this.state.id)
     }
   }
@@ -30,6 +30,6 @@ export default class Bullet extends Component {
 
   render () {
     const  { x, y } = this.state
-    return (<div ref={'bullet'} className="bullet bulet-rotation" style={{bottom: y, left:x }}></div>)
+    return (<div ref={'bullet'} className="bullet " style={{bottom: y, left:x }}></div>)
   }
 }
