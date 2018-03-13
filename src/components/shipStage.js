@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import Bullet from './bullet'
-import Stage from './stage'
 import Ship from './ship'
 
-export default class GameBox extends Component {
+export default class ShipStage extends Component {
 
   state = {
     step: 30,
@@ -33,7 +32,9 @@ export default class GameBox extends Component {
 
   fireBullet = () => {
     const bulletId = this.state.bulletId + 1
-    this.setState({ bullets: this.state.bullets.concat({id: bulletId}), bulletId: bulletId })
+    this.state.bullets.push({id: bulletId})
+    // this.setState({ bullets: this.state.bullets.concat({id: bulletId}), })
+    this.setState({  bulletId: bulletId })  // mutation to avoid array loop in concat
   }
 
   removeBulletFromStage = (removeId) => this.setState({ bullets: this.state.bullets.filter(b => b.id !== removeId)})
@@ -42,7 +43,7 @@ export default class GameBox extends Component {
     const body = document.querySelector("body")
     body.addEventListener("keydown", this.updatePosition)
     // body.addEventListener("keyup", this.updatePosition)
-    const stage = document.querySelector('div.stage')
+    const stage = document.querySelector('div.ship-stage')
     this.setState({ stageWidth: stage.offsetWidth, stageHeight: stage.offsetHeight})
   }
 
@@ -50,10 +51,10 @@ export default class GameBox extends Component {
     console.log('game box')
     const { x, y, stageHeight, bullets } = this.state
     return (
-      <Stage>
+      <div className='ship-stage'>
         <Ship x={x} y={y}/>
         {stageHeight && bullets.map( b => <Bullet id={b.id} key={b.id} x={x+22} y={y} stageHeight={stageHeight} removeBulletFromStage={this.removeBulletFromStage} />)}
-      </Stage>
+      </div>
     )
   }
 

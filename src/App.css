@@ -128,7 +128,7 @@ header a, a:visited {
   animation:move-clouds-back 200s linear infinite;
 }
 
-.stage {
+.ship-stage {
   position: fixed;
   top: 0px;
   left: 0px;
