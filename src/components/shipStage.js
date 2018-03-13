@@ -53,7 +53,7 @@ export default class ShipStage extends Component {
     return (
       <div className='ship-stage'>
         <Ship x={x} y={y}/>
-        {stageHeight && bullets.map( b => <Bullet id={b.id} key={b.id} x={x+22} y={y} stageHeight={stageHeight} removeBulletFromStage={this.removeBulletFromStage} />)}
+        {stageHeight && bullets.map( b => <Bullet id={b.id} key={b.id} x={x+22} y={y+5} stageHeight={stageHeight} removeBulletFromStage={this.removeBulletFromStage} />)}
       </div>
     )
   }

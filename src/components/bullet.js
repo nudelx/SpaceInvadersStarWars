@@ -8,8 +8,8 @@ export default class Bullet extends Component {
     this.state = {
       id: props.id,
       stageHeight: props.stageHeight,
-      yDelta: 10,
-      ySpeed: 15,
+      yDelta: 50,
+      ySpeed: 40,
       y: props.y,
       x: props.x
     }
