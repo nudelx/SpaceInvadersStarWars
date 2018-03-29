@@ -1,11 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class GameBox extends Component {
-
-
-  render() {
-    return (this.props.children(...this.props))
-  }
+const GameBox = ({ children , ...props}) => {
+  return (children(...props))
 }
 
 

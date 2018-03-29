@@ -56,6 +56,7 @@ export default class ShipStage extends Component {
   render() {
     console.log("game box")
     const { x, y, stageHeight, bullets } = this.state
+    const { alienStageBottom, alienStageTop } = this.props
     return (
       <div className="ship-stage">
         <Ship x={x} y={y} />
@@ -68,6 +69,9 @@ export default class ShipStage extends Component {
               y={y + 5}
               stageHeight={stageHeight}
               removeBulletFromStage={this.removeBulletFromStage}
+              alienStageBottom={alienStageBottom}
+              alienStageTop={alienStageTop}
+
             />
           ))}
       </div>
