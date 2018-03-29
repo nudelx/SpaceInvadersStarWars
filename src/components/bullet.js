@@ -20,13 +20,13 @@ export default class Bullet extends Component {
     this.props.removeBulletFromStage(this.state.id)
   }
 
-  checkHit = () => {
+  hitCheck = () => {
 
   }
 
   checkIfBulletInAlienRange = () => {
     if ( this.refs.bullet.offsetTop > this.props.alienStageTop && this.refs.bullet.offsetTop < this.props.alienStageBottom ) {
-      this.checkHit()
+      this.hitCheck()
     }
   }
 
