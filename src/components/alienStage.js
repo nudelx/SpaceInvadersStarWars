@@ -1,7 +1,7 @@
 import React from 'react'
 import Alien from './alien'
 import { ALIENS } from '../constants/aliensConst'
-console.log(ALIENS)
+// console.log(ALIENS)
 
 
 

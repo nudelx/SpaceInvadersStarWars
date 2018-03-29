@@ -1,1 +1,11 @@
-export const ALIENS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+const makeAliens = () => {
+  console.log("make ALIENS")
+  const EMPTY = new Array(45)
+  const ALIENS = []
+  for (let i = 0; i < EMPTY.length; i++) {
+    ALIENS.push(i)
+  }
+  return ALIENS
+}
+
+export const ALIENS = makeAliens()
