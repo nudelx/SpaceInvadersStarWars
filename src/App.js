@@ -7,6 +7,7 @@ import Twinkling from './components/twinkling'
 import Stars from './components/stars'
 import ShipStage from './components/shipStage'
 import AlienStage from './components/alienStage'
+import GameBox from './DCC/gameBox'
 
 class App extends Component {
 
@@ -18,8 +19,14 @@ class App extends Component {
         <Clouds />
         <Twinkling />
         <Stars />
-        <AlienStage/>
-        <ShipStage />
+        <GameBox>
+          {
+            (props) => [
+              <AlienStage {...props}/>,
+              <ShipStage {...props} />
+            ]
+          }
+        </GameBox>
       </div>
     );
   }

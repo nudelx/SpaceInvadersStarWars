@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-
 export default class Bullet extends Component {
 
   constructor(props) {
@@ -31,6 +30,6 @@ export default class Bullet extends Component {
   render () {
     console.log('bullet render')
     const  { x, y } = this.state
-    return (<div ref={'bullet'} className="bullet " style={{bottom: y, left:x }}></div>)
+    return (<div ref={'bullet'} className="bullet bulet-rotation" style={{bottom: y, left:x }}></div>)
   }
 }
