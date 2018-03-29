@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Alien from './alien'
-
+import { ALIENS } from '../constants/aliensConst'
 
 class AlienStage extends Component {
   state = { aliens: ALIENS }
