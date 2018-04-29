@@ -13,6 +13,7 @@ class AlienStage extends Component {
       alienHitCheck: this.alienHitCheck
     }
     this.props.setBoxState(position)
+    
   }
 
   alienHitCheck = props => {
