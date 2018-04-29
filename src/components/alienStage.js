@@ -8,7 +8,7 @@ class AlienStage extends Component {
     console.log("AlienStage => done on mount ", this.refs.alienStage)
     const { offsetTop, offsetHeight } = this.refs.alienStage
     const position = {
-      alienStageBottom: parseInt(offsetTop) + parseInt(offsetHeight),
+      alienStageBottom: parseInt(offsetTop, 10) + parseInt(offsetHeight, 10),
       alienStageTop: offsetTop,
       alienHitCheck: this.alienHitCheck
     }
