@@ -13,26 +13,35 @@ export default class Bullet extends Component {
     }
   }
 
-  moveBullet = () => this.setState({ y: this.state.y + this.state.yDelta }, this.calcIfRemove)
+  moveBullet = () =>
+    this.setState({ y: this.state.y + this.state.yDelta }, this.calcIfRemove)
 
   removeBullet() {
     clearInterval(this.timer)
     this.props.removeBulletFromStage(this.state.id)
   }
 
-  hitCheck = () => {
-    console.log('in area !!! bullet ' + this.state.id)
+  hitCheck() {
+    const { alienHitCheck } = this.props
+    const { x, y, id } = this.state
+    console.log("in area !!! bullet " + this.state.id)
+    alienHitCheck && alienHitCheck({ b_id: id, x, y })
   }
 
   checkIfBulletInAlienRange = () => {
-    if ( this.refs.bullet.offsetTop > this.props.alienStageTop && this.refs.bullet.offsetTop < this.props.alienStageBottom ) {
+    if (
+      this.refs.bullet.offsetTop > this.props.alienStageTop &&
+      this.refs.bullet.offsetTop < this.props.alienStageBottom
+    ) {
       this.hitCheck()
     }
   }
 
   calcIfRemove = () => {
     this.checkIfBulletInAlienRange()
-    if (this.state.y > this.state.stageHeight) { this.removeBullet() }
+    if (this.state.y > this.state.stageHeight) {
+      this.removeBullet()
+    }
   }
 
   componentDidMount() {
@@ -40,7 +49,7 @@ export default class Bullet extends Component {
   }
 
   render() {
-    console.log("bullet render")
+    console.log("bullet render", this)
     const { x, y } = this.state
     return (
       <div

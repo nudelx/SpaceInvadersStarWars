@@ -15,7 +15,7 @@ class App extends Component {
         <Header />
         <BackGroud />
         <GameBox>
-          {({ setBoxState, alienStageBottom, alienStageTop }) => [
+          {({ setBoxState, alienStageBottom, alienStageTop, alienHitCheck }) => [
             <AlienStage
               key="AlienStage"
               setBoxState={setBoxState}
@@ -24,6 +24,7 @@ class App extends Component {
               key="ShipStage"
               alienStageBottom={alienStageBottom}
               alienStageTop={alienStageTop}
+              alienHitCheck={alienHitCheck}
             />
           ]}
         </GameBox>

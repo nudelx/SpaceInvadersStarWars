@@ -57,7 +57,7 @@ export default class ShipStage extends Component {
 
   render() {
     const { x, y, stageHeight, bullets, bulletOffsetX, bulletOffsetY } = this.state
-    const { alienStageBottom, alienStageTop } = this.props
+    const { alienStageBottom, alienStageTop, alienHitCheck } = this.props
     return (
       <div className="ship-stage">
         <Ship x={x} y={y} />
@@ -72,7 +72,7 @@ export default class ShipStage extends Component {
               removeBulletFromStage={this.removeBulletFromStage}
               alienStageBottom={alienStageBottom}
               alienStageTop={alienStageTop}
-
+              alienHitCheck={alienHitCheck}
             />
           ))}
       </div>
