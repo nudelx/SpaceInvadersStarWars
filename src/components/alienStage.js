@@ -11,7 +11,7 @@ class AlienStage extends Component {
         alienStageBottom: parseInt(offsetTop) + parseInt(offsetHeight),
         alienStageTop: offsetTop
       }
-      this.props.setAppState(position)
+      this.props.setBoxState(position)
   }
 
   checkHit () {
@@ -25,7 +25,6 @@ class AlienStage extends Component {
         <div className="alien-box">
             { this.state.aliens.map( a => <Alien ref={a.alienId} key={a.alienId}/>)}
         </div>
-
       </div>
     )
   }

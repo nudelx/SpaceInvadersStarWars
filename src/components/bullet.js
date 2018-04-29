@@ -21,7 +21,7 @@ export default class Bullet extends Component {
   }
 
   hitCheck = () => {
-    console.log('in area !!!')
+    console.log('in area !!! bullet ' + this.state.id)
   }
 
   checkIfBulletInAlienRange = () => {

@@ -56,7 +56,6 @@ export default class ShipStage extends Component {
   }
 
   render() {
-    console.log("game box")
     const { x, y, stageHeight, bullets, bulletOffsetX, bulletOffsetY } = this.state
     const { alienStageBottom, alienStageTop } = this.props
     return (
