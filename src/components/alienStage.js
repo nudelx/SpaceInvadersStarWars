@@ -13,20 +13,20 @@ class AlienStage extends Component {
       alienHitCheck: this.alienHitCheck
     }
     this.props.setBoxState(position)
-    
+
   }
 
   alienHitCheck = props => {
     const { b_id, x, y } = props
     const { refs } = this
-    console.log(this)
+    // console.log(this)
     Object.keys(refs).forEach(k => {
       const { [k]: { refs: alienRef } } = refs
-      console.log(alienRef)
-      console.log("x", x)
-      console.log("y", y)
+      // console.log(alienRef)
+      // console.log("x", x)
+      // console.log("y", y)
       if ( alienRef && alienRef.alien.offsetLeft + alienRef.alien.offsetParent.offsetLeft < x  && x < alienRef.alien.offsetLeft + alienRef.alien.offsetParent.offsetLeft + alienRef.alien.offsetWidth) {
-        console.log('da', alienRef)
+        // console.log('da', alienRef)
       }
     })
   }

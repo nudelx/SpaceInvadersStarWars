@@ -7,7 +7,7 @@ export default class Bullet extends Component {
       id: props.id,
       stageHeight: props.stageHeight,
       yDelta: 50,
-      ySpeed: 300,
+      ySpeed: 40,
       y: props.y,
       x: props.x
     }
