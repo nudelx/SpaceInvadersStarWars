@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const GameBox = ({ children , ...props}) => {
-  return (children(...props))
+class GameBox extends Component {
+    render() {
+      const { children } = this.props
+      return (children(...this.props))
+    }
 }
 
 

@@ -7,7 +7,7 @@ export default class Bullet extends Component {
       id: props.id,
       stageHeight: props.stageHeight,
       yDelta: 50,
-      ySpeed: 400,
+      ySpeed: 300,
       y: props.y,
       x: props.x
     }
@@ -21,7 +21,7 @@ export default class Bullet extends Component {
   }
 
   hitCheck = () => {
-
+    console.log('in area !!!')
   }
 
   checkIfBulletInAlienRange = () => {
