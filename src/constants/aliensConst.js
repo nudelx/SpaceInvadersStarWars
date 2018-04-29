@@ -3,7 +3,7 @@ const makeAliens = () => {
   const EMPTY = new Array(45)
   const ALIENS = []
   for (let i = 0; i < EMPTY.length; i++) {
-    ALIENS.push(i)
+    ALIENS.push({ alienId: `alien_${i}` })
   }
   return ALIENS
 }

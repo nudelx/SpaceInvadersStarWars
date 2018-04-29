@@ -7,6 +7,8 @@ export default class ShipStage extends Component {
     step: 30,
     x: 200,
     y: 30,
+    bulletOffsetX: 22,
+    bulletOffsetY: 5,
     bulletId: 0,
     map: {
       ArrowLeft: "left",
@@ -55,7 +57,8 @@ export default class ShipStage extends Component {
 
   render() {
     console.log("game box")
-    const { x, y, stageHeight, bullets } = this.state
+    const { x, y, stageHeight, bullets, bulletOffsetX, bulletOffsetY } = this.state
+    const { alienStageBottom, alienStageTop } = this.props
     return (
       <div className="ship-stage">
         <Ship x={x} y={y} />
@@ -64,10 +67,13 @@ export default class ShipStage extends Component {
             <Bullet
               id={b.id}
               key={b.id}
-              x={x + 22}
-              y={y + 5}
+              x={x + bulletOffsetX}
+              y={y + bulletOffsetY}
               stageHeight={stageHeight}
               removeBulletFromStage={this.removeBulletFromStage}
+              alienStageBottom={alienStageBottom}
+              alienStageTop={alienStageTop}
+
             />
           ))}
       </div>
