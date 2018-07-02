@@ -49,7 +49,7 @@ export default class Bullet extends Component {
   }
 
   render() {
-    console.log("bullet render", this)
+    // console.log("bullet render", this)
     const { x, y } = this.state
     return (
       <div

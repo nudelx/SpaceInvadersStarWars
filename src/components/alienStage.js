@@ -26,7 +26,7 @@ class AlienStage extends Component {
       // console.log("x", x)
       // console.log("y", y)
       if ( alienRef && alienRef.alien.offsetLeft + alienRef.alien.offsetParent.offsetLeft < x  && x < alienRef.alien.offsetLeft + alienRef.alien.offsetParent.offsetLeft + alienRef.alien.offsetWidth) {
-        // console.log('da', alienRef)
+        console.log('da', alienRef)
       }
     })
   }
