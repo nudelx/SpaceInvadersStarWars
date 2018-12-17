@@ -7,7 +7,7 @@ export default class Bullet extends Component {
       id: props.id,
       stageHeight: props.stageHeight,
       yDelta: 50,
-      ySpeed: 40,
+      ySpeed: 1000,
       y: props.y,
       x: props.x
     }
@@ -49,7 +49,7 @@ export default class Bullet extends Component {
   }
 
   render() {
-    // console.log("bullet render", this)
+    console.log("bullet render")
     const { x, y } = this.state
     return (
       <div
