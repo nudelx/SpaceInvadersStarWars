@@ -65,7 +65,6 @@ class AlienStage extends Component {
         [k]: { refs: alienRef }
       } = refs
       if (this.checkIfValidAlienRef(alienRef) && this.checkByX(alienRef, x)) {
-        console.log('here')
         if (this.checkByY(alienRef, y)) {
           this.killAlien(alienRef.alien.id)
           return true // kill !

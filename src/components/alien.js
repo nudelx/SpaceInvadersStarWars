@@ -13,7 +13,6 @@ export default class Alien extends Component {
     console.log('Alien render', dead)
     return (
       <div
-        title
         id={alienId}
         ref={'alien'}
         className={`alien alien-green ${
