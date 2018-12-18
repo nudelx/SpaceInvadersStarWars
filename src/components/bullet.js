@@ -7,7 +7,7 @@ export default class Bullet extends Component {
       id: props.id,
       stageHeight: props.stageHeight,
       yDelta: 50,
-      ySpeed: 1000,
+      ySpeed: 40,
       y: props.y,
       x: props.x
     }
@@ -23,9 +23,10 @@ export default class Bullet extends Component {
 
   hitCheck() {
     const { alienHitCheck } = this.props
-    const { x, y, id } = this.state
-    console.log('in area !!! bullet ' + this.state.id)
-    alienHitCheck && alienHitCheck({ b_id: id, x, y })
+    const { x, y } = this.state
+    if (alienHitCheck && alienHitCheck({ x, y })) {
+      setTimeout(() => this.removeBullet(), 10)
+    }
   }
 
   checkIfBulletInAlienRange = () => {
@@ -49,13 +50,6 @@ export default class Bullet extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-    console.log('bullet render', this)
-    console.log('X', this.state.x)
-    console.log('y', this.state.y)
-=======
-    console.log("bullet render")
->>>>>>> 182309fa1bf9bcb78a9f909f262659858a79f78d
     const { x, y } = this.state
     return (
       <div
