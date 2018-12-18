@@ -16,29 +16,49 @@ class AlienStage extends Component {
   }
 
   checkByX(alienRef, x) {
-    return (
-      alienRef &&
-      alienRef.alien.offsetLeft + alienRef.alien.offsetParent.offsetLeft < x &&
-      x <
-        alienRef.alien.offsetLeft +
-          alienRef.alien.offsetParent.offsetLeft +
-          alienRef.alien.offsetWidth
-    )
+    const pos = alienRef.alien.getBoundingClientRect()
+    return x > pos.left && x < pos.left + pos.width
+    // return (
+    //   alienRef &&
+    //   alienRef.alien.offsetLeft + alienRef.alien.offsetParent.offsetLeft < x &&
+    //   x <
+    //     alienRef.alien.offsetLeft +
+    //       alienRef.alien.offsetParent.offsetLeft +
+    //       alienRef.alien.offsetWidth
+    // )
+  }
+
+  checkByY(alienRef, y) {
+    const pos = alienRef.alien.getBoundingClientRect()
+    return y > pos.top && y < pos.top + pos.height
+    // return (
+    //   alienRef &&
+    //   alienRef.alien.offsetTop +
+    //     alienRef.alien.offsetParent.offsetParent.offsetTop <
+    //     y &&
+    //   y <
+    //     alienRef.alien.offsetTop +
+    //       alienRef.alien.offsetParent.offsetParent.offsetTop +
+    //       alienRef.alien.offsetHeight
+    // )
   }
 
   alienHitCheck = props => {
     const { b_id, x, y } = props
     const { refs } = this
-    // console.log(this)
+    console.log('in CHEKC', y)
     Object.keys(refs).forEach(k => {
-      const { [k]: { refs: alienRef } } = refs
+      const {
+        [k]: { refs: alienRef }
+      } = refs
       // console.log(alienRef)
-      // console.log("x", x)
-      // console.log("y", y)
-      if (this.checkByX(alienRef, x)) {
+      console.log('x', x)
+      console.log('y', y)
+      if (alienRef && this.checkByX(alienRef, x)) {
         console.log('da X HIT !!!!', alienRef)
         if (this.checkByY(alienRef, y)) {
           console.log('KILLL')
+          debugger
         }
       }
     })

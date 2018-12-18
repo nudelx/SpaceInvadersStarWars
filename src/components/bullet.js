@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 
 export default class Bullet extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ export default class Bullet extends Component {
   }
 
   moveBullet = () =>
-    this.setState({ y: this.state.y + this.state.yDelta }, this.calcIfRemove)
+    this.setState({ y: this.state.y - this.state.yDelta }, this.calcIfRemove)
 
   removeBullet() {
     clearInterval(this.timer)
@@ -24,7 +24,7 @@ export default class Bullet extends Component {
   hitCheck() {
     const { alienHitCheck } = this.props
     const { x, y, id } = this.state
-    console.log("in area !!! bullet " + this.state.id)
+    console.log('in area !!! bullet ' + this.state.id)
     alienHitCheck && alienHitCheck({ b_id: id, x, y })
   }
 
@@ -39,7 +39,7 @@ export default class Bullet extends Component {
 
   calcIfRemove = () => {
     this.checkIfBulletInAlienRange()
-    if (this.state.y > this.state.stageHeight) {
+    if (this.state.y < 0) {
       this.removeBullet()
     }
   }
@@ -49,13 +49,15 @@ export default class Bullet extends Component {
   }
 
   render() {
-    console.log("bullet render", this)
+    console.log('bullet render', this)
+    console.log('X', this.state.x)
+    console.log('y', this.state.y)
     const { x, y } = this.state
     return (
       <div
-        ref={"bullet"}
-        className="bullet bulet-rotation"
-        style={{ bottom: y, left: x }}
+        ref={'bullet'}
+        className="bullet bullet-rotation"
+        style={{ top: y, left: x }}
       />
     )
   }

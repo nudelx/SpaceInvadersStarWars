@@ -27,7 +27,7 @@ html {
 
 .App-logo {
   -webkit-animation: App-logo-spin infinite 20s linear;
-          animation: App-logo-spin infinite 20s linear;
+  animation: App-logo-spin infinite 20s linear;
   height: 60px;
 }
 
@@ -40,20 +40,30 @@ html {
 }
 
 @-webkit-keyframes App-logo-spin {
-  from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
-  to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes App-logo-spin {
-  from { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
-  to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
-
-
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 /* header {
     background-color:rgba(33, 33, 33, 0.9);
@@ -81,51 +91,69 @@ header a, a:visited {
 } */
 
 @keyframes move-twink-back {
-    from {background-position:0 0;}
-    to {background-position:-10000px 5000px;}
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
 }
 @-webkit-keyframes move-twink-back {
-    from {background-position:0 0;}
-    to {background-position:-10000px 5000px;}
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
 }
 
 @keyframes move-clouds-back {
-    from {background-position:0 0;}
-    to {background-position:10000px 0;}
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 10000px 0;
+  }
 }
 @-webkit-keyframes move-clouds-back {
-    from {background-position:0 0;}
-    to {background-position:10000px 0;}
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 10000px 0;
+  }
 }
 
-.stars, .twinkling, .clouds {
-  position:absolute;
-  top:60px;
-  left:0;
-  right:0;
-  bottom:0;
-  width:100%;
-  height:100%;
-  display:block;
+.stars,
+.twinkling,
+.clouds {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .stars {
-  background:#000 url(./img/stars.png) repeat top center;
-  z-index:0;
+  background: #000 url(./img/stars.png) repeat top center;
+  z-index: 0;
 }
 
-.twinkling{
-  background:transparent url(./img/twinkling.png) repeat top center;
-  z-index:1;
-  -webkit-animation:move-twink-back 200s linear infinite;
-  animation:move-twink-back 200s linear infinite;
+.twinkling {
+  background: transparent url(./img/twinkling.png) repeat top center;
+  z-index: 1;
+  -webkit-animation: move-twink-back 200s linear infinite;
+  animation: move-twink-back 200s linear infinite;
 }
 
-.clouds{
-    background:transparent url(./img/clouds3.png) repeat top center;
-    z-index:3;
-  -webkit-animation:move-clouds-back 200s linear infinite;
-  animation:move-clouds-back 200s linear infinite;
+.clouds {
+  background: transparent url(./img/clouds3.png) repeat top center;
+  z-index: 3;
+  -webkit-animation: move-clouds-back 200s linear infinite;
+  animation: move-clouds-back 200s linear infinite;
 }
 
 .ship-stage {
@@ -133,7 +161,7 @@ header a, a:visited {
   top: 0px;
   left: 0px;
   right: 0px;
-  bottom:0px;
+  bottom: 0px;
   z-index: 3;
 }
 
@@ -159,7 +187,6 @@ header a, a:visited {
   background-position: center;
   background-repeat: no-repeat;
   z-index: 1;
-
 }
 
 @-webkit-keyframes rotating /* Safari and Chrome */ {
@@ -190,10 +217,26 @@ header a, a:visited {
     transform: rotate(360deg);
   }
 }
-.bulet-rotation {
-  -webkit-animation: rotating .5s linear infinite;
-  -moz-animation: rotating .5s linear infinite;
-  -ms-animation: rotating .5s linear infinite;
-  -o-animation: rotating .5s linear infinite;
-  animation: rotating .5s linear infinite;
+.bullet-rotation {
+  -webkit-animation: rotating 0.5s linear infinite;
+  -moz-animation: rotating 0.5s linear infinite;
+  -ms-animation: rotating 0.5s linear infinite;
+  -o-animation: rotating 0.5s linear infinite;
+  animation: rotating 0.5s linear infinite;
 }
+
+.test {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: red;
+}
+
+/* bottom: 236.390625 
+height: 48
+left: 598.5
+right: 646.5
+top: 188.390625
+width: 48
+x: 598.5
+y: 188.390625 */
