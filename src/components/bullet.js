@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 
 export default class Bullet extends Component {
   constructor(props) {
@@ -7,32 +7,42 @@ export default class Bullet extends Component {
       id: props.id,
       stageHeight: props.stageHeight,
       yDelta: 50,
-      ySpeed: 400,
+      ySpeed: 40,
       y: props.y,
       x: props.x
     }
   }
 
-  moveBullet = () => this.setState({ y: this.state.y + this.state.yDelta }, this.calcIfRemove)
+  moveBullet = () =>
+    this.setState({ y: this.state.y - this.state.yDelta }, this.calcIfRemove)
 
   removeBullet() {
     clearInterval(this.timer)
     this.props.removeBulletFromStage(this.state.id)
   }
 
-  hitCheck = () => {
-
+  hitCheck() {
+    const { alienHitCheck } = this.props
+    const { x, y } = this.state
+    if (alienHitCheck && alienHitCheck({ x, y })) {
+      setTimeout(() => this.removeBullet(), 10)
+    }
   }
 
   checkIfBulletInAlienRange = () => {
-    if ( this.refs.bullet.offsetTop > this.props.alienStageTop && this.refs.bullet.offsetTop < this.props.alienStageBottom ) {
+    if (
+      this.refs.bullet.offsetTop > this.props.alienStageTop &&
+      this.refs.bullet.offsetTop < this.props.alienStageBottom
+    ) {
       this.hitCheck()
     }
   }
 
   calcIfRemove = () => {
     this.checkIfBulletInAlienRange()
-    if (this.state.y > this.state.stageHeight) { this.removeBullet() }
+    if (this.state.y < 0) {
+      this.removeBullet()
+    }
   }
 
   componentDidMount() {
@@ -40,13 +50,12 @@ export default class Bullet extends Component {
   }
 
   render() {
-    console.log("bullet render")
     const { x, y } = this.state
     return (
       <div
-        ref={"bullet"}
-        className="bullet bulet-rotation"
-        style={{ bottom: y, left: x }}
+        ref={'bullet'}
+        className="bullet bullet-rotation"
+        style={{ top: y, left: x }}
       />
     )
   }

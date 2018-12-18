@@ -1,8 +1,18 @@
-import React from 'react'
+import { Component } from "react"
 
-const GameBox = ({ children , ...props}) => {
-  return (children(...props))
+class GameBox extends Component {
+  state = {
+    alienStageBottom: 0,
+    alienStageTop: 0
+  }
+
+  setBoxState = stateData => this.setState({ ...stateData })
+
+  render() {
+    console.log('gameBox')
+    const { children } = this.props
+    return children({ setBoxState: this.setBoxState, ...this.state })
+  }
 }
-
 
 export default GameBox
