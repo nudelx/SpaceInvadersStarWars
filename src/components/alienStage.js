@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import Alien from './alien'
-import { ALIENS } from '../constants/aliensConst'
+import React, { Component } from "react"
+import Alien from "./alien"
+import { ALIENS } from "../constants/aliensConst"
 
 class AlienStage extends Component {
   state = { aliens: ALIENS }
   componentDidMount() {
-    console.log('AlienStage => done on mount ', this.refs.alienStage)
+    console.log("AlienStage => done on mount ", this.refs.alienStage)
     const { offsetTop, offsetHeight } = this.refs.alienStage
     const position = {
       alienStageBottom: parseInt(offsetTop, 10) + parseInt(offsetHeight, 10),
@@ -52,6 +52,7 @@ class AlienStage extends Component {
         [k]: { refs: alienRef }
       } = refs
       // console.log(alienRef)
+<<<<<<< HEAD
       console.log('x', x)
       console.log('y', y)
       if (alienRef && this.checkByX(alienRef, x)) {
@@ -59,13 +60,21 @@ class AlienStage extends Component {
         if (this.checkByY(alienRef, y)) {
           console.log('KILLL')
           debugger
+=======
+      // console.log("x", x)
+      // console.log("y", y)
+      if (this.checkByX(alienRef, x)) {
+        console.log("da X HIT !!!!", alienRef)
+        if (this.checkByY(alienRef, y)) {
+          console.log("KILLL")
+>>>>>>> 182309fa1bf9bcb78a9f909f262659858a79f78d
         }
       }
     })
   }
 
   render() {
-    console.log('AlienStage')
+    console.log("AlienStage")
     return (
       <div ref="alienStage" className="alien-stage">
         <div className="alien-box">
