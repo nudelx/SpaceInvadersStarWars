@@ -1,5 +1,6 @@
 html {
   overflow: hidden;
+  font-family: monospace;
 }
 
 .App {
@@ -244,6 +245,39 @@ header a, a:visited {
   cursor: pointer;
 }
 
+.message-box {
+  top: 20%;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+}
+
+.message {
+  width: 500px;
+  border: 10px solid yellow;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 34px;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #222;
+  opacity: 0.6;
+  padding: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.message > div {
+  margin: 10px 0;
+}
+
+.message-box button {
+  background-color: yellow;
+  padding: 10px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
 /* bottom: 236.390625 
 height: 48
 left: 598.5
