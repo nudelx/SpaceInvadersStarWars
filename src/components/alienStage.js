@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
-import Alien from './alien'
-import { ALIENS } from '../constants/aliensConst'
-import * as BOOM from '../sfx/boom.mp3'
+import React, { Component } from "react"
+import Alien from "./alien"
+import { ALIENS } from "../constants/aliensConst"
+import * as BOOM from "../sfx/boom.mp3"
 
 class AlienStage extends Component {
   // state = { aliens: ALIENS, dead: {}, boom: {} }
-  state = { aliens: ALIENS, dead: {} }
+  state = { aliens: ALIENS, dead: {}, alienBoxTop: 0, alienBox: 0 }
+
   componentDidMount() {
-    console.log('AlienStage => done on mount ', this.refs.alienStage)
+    console.log("AlienStage => done on mount ", this.refs.alienStage)
     const { offsetTop, offsetHeight } = this.refs.alienStage
     const position = {
       alienStageBottom: parseInt(offsetTop, 10) + parseInt(offsetHeight, 10),
@@ -15,6 +16,19 @@ class AlienStage extends Component {
       alienHitCheck: this.alienHitCheck
     }
     this.props.setBoxState(position)
+    this.timer = setInterval(() => this.moveStage(), 1000)
+    const pos = this.refs.alienStage.getBoundingClientRect()
+
+    this.setState(() => ({
+      alienBox: pos.left,
+      alienBoxTop: pos.top
+    }))
+  }
+
+  moveStage() {
+    console.log("SSSSSS", this.refs.alienStage.getBoundingClientRect())
+    this.setState(state => ({ alienBoxTop: state.alienBoxTop + 10 }))
+    setTimeout(() => this.checkOverflow(), 0)
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -24,12 +38,40 @@ class AlienStage extends Component {
       : true
   }
 
+  stopTimer() {
+    clearInterval(this.timer)
+  }
+
+  checkOverflow() {
+    return Object.keys(this.refs).some(k => {
+      const {
+        [k]: { refs: alienRef }
+      } = this.refs
+      if (this.checkIfValidAlienRef(alienRef)) {
+        const pos = alienRef.alien.getBoundingClientRect()
+        if (pos.top + pos.height >= this.props.shipTop) {
+          this.stopTimer()
+          this.props.setBoxState({ gameOver: true })
+          return true
+        }
+      }
+    })
+  }
+
   setToDead(alienId) {
     const { dead, boom } = this.state
     dead[alienId] = dead[alienId] ? dead[alienId] + 1 : 1
     // boom[alienId] = boom[alienId] ? boom[alienId] + 1 : 1
     // this.setState(state => ({ dead: { ...dead }, boom: { ...boom } }))
-    this.setState(state => ({ dead: { ...dead } }))
+    this.setState(
+      state => ({ dead: { ...dead } }),
+      () => {
+        if (Object.keys(this.state.dead).length === this.state.aliens.length) {
+          this.stopTimer()
+          this.props.setBoxState({ gameDone: true })
+        }
+      }
+    )
   }
 
   // setToBoomed = (alienId, value) => {
@@ -90,10 +132,14 @@ class AlienStage extends Component {
   }
 
   render() {
-    console.log('AlienStage', this.state)
+    console.log("AlienStage", this.state)
     return (
-      <div ref="alienStage" className="alien-stage">
-        <div className="alien-box">
+      <div
+        ref="alienStage"
+        className="alien-stage"
+        style={{ top: this.state.alienBoxTop ? this.state.alienBoxTop : "" }}
+      >
+        <div className="alien-box" ref={this.props.alienBox}>
           {this.state.aliens.map(a => (
             <Alien
               ref={a.alienId}
