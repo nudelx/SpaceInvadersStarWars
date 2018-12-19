@@ -6,4 +6,6 @@
 
 ## No flash, no canvas, pure HTML + CSS + JavaScript React Lib
 
+## To play => https://nudelx.github.io/ReactSpaceInvaders/ 
+
 <center><img src="https://github.com/nudelx/ReactSpaceInvaders/blob/master/si.png"></center>
