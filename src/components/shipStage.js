@@ -82,7 +82,6 @@ export default class ShipStage extends Component {
       bulletOffsetY
     } = this.state
     const { alienHitCheck, alienBoxRef } = this.props
-    console.log("dddd", alienBoxRef)
     return (
       <div className="ship-stage">
         <Ship x={x} y={y} />

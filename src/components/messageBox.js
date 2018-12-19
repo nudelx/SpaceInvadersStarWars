@@ -1,7 +1,6 @@
 import React from "react"
 
 const Message = ({ message, onclick, buttonText }) => {
-  console.log("message")
   return (
     <div className="message-box">
       <div className="message">
