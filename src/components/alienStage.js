@@ -15,6 +15,13 @@ class AlienStage extends Component {
     this.props.setBoxState(position)
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState.boom !== this.state.boom &&
+      nextState.dead === this.state.dead
+      ? false
+      : true
+  }
+
   setToDead(alienId) {
     const { dead, boom } = this.state
     dead[alienId] = dead[alienId] ? dead[alienId] + 1 : 1
