@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 
 export default class Bullet extends Component {
   constructor(props) {
@@ -30,9 +30,10 @@ export default class Bullet extends Component {
   }
 
   checkIfBulletInAlienRange = () => {
+    const pos = this.props.alienBoxRef.getBoundingClientRect()
     if (
-      this.refs.bullet.offsetTop > this.props.alienStageTop &&
-      this.refs.bullet.offsetTop < this.props.alienStageBottom
+      this.refs.bullet.offsetTop > pos.top &&
+      this.refs.bullet.offsetTop < pos.top + pos.height
     ) {
       this.hitCheck()
     }
@@ -53,7 +54,7 @@ export default class Bullet extends Component {
     const { x, y } = this.state
     return (
       <div
-        ref={'bullet'}
+        ref={"bullet"}
         className="bullet bullet-rotation"
         style={{ top: y, left: x }}
       />
