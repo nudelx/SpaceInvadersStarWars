@@ -5,3 +5,5 @@
 [![game](https://img.shields.io/badge/fun-coding-orange.svg)]()
 
 ## No flash, no canvas, pure HTML + CSS + JavaScript React Lib
+
+<center><img src="https://github.com/nudelx/ReactSpaceInvaders/blob/master/si.png"></center>
