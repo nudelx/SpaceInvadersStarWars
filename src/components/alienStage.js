@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Alien from './alien'
 import { ALIENS } from '../constants/aliensConst'
+import * as BOOM from '../sfx/boom.mp3'
 
 class AlienStage extends Component {
   // state = { aliens: ALIENS, dead: {}, boom: {} }
@@ -65,6 +66,11 @@ class AlienStage extends Component {
     )
   }
 
+  playSound() {
+    const fire = new Audio(BOOM)
+    fire.play()
+  }
+
   alienHitCheck = props => {
     const { x, y } = props
     const { refs } = this
@@ -75,6 +81,7 @@ class AlienStage extends Component {
       if (this.checkIfValidAlienRef(alienRef) && this.checkByX(alienRef, x)) {
         if (this.checkByY(alienRef, y)) {
           this.killAlien(alienRef.alien.id)
+          this.playSound()
           return true // kill !
         }
       }

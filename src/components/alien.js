@@ -11,7 +11,7 @@ export default class Alien extends Component {
     if (dead && !this.state.dead) {
       this.setState(
         state => ({ dead, boom: true }),
-        () => setTimeout(() => this.setState(state => ({ boom: false })), 50)
+        () => setTimeout(() => this.setState(state => ({ boom: false })), 60)
       )
     }
   }

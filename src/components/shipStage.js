@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Bullet from './bullet'
 import Ship from './ship'
+import * as FIRE from '../sfx/fire.mp3'
 
 export default class ShipStage extends Component {
   state = {
@@ -42,6 +43,12 @@ export default class ShipStage extends Component {
     this.state.bullets.push({ id: bulletId })
     // this.setState({ bullets: this.state.bullets.concat({id: bulletId}), })
     this.setState({ bulletId: bulletId }) // mutation to avoid array loop in concat
+    this.playFire()
+  }
+
+  playFire() {
+    const fire = new Audio(FIRE)
+    fire.play()
   }
 
   removeBulletFromStage = removeId =>
@@ -62,6 +69,7 @@ export default class ShipStage extends Component {
   }
 
   render() {
+    console.log('render ship stage', this.props)
     const {
       x,
       y,
