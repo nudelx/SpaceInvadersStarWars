@@ -232,6 +232,18 @@ header a, a:visited {
   background-color: red;
 }
 
+.sound-bgm-control {
+  z-index: 4;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.sound-bgm-control:hover {
+  cursor: pointer;
+}
+
 /* bottom: 236.390625 
 height: 48
 left: 598.5

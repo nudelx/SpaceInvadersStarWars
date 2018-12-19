@@ -1,22 +1,30 @@
 import React, { Component } from 'react'
 
 export default class Alien extends Component {
+  state = {
+    dead: false,
+    boom: false
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const { setToBoomed, shouldBoom, alienId } = this.props
-    if (shouldBoom) {
-      setTimeout(() => setToBoomed(alienId, 42), 30)
+    const { dead } = this.props
+    if (dead && !this.state.dead) {
+      this.setState(
+        state => ({ dead, boom: true }),
+        () => setTimeout(() => this.setState(state => ({ boom: false })), 60)
+      )
     }
   }
 
   render() {
-    const { alienId, dead, shouldBoom } = this.props
-    console.log('Alien render', dead)
+    const { alienId, dead } = this.props
+
     return (
       <div
         id={alienId}
         ref={'alien'}
         className={`alien alien-green ${
-          shouldBoom ? 'boom' : dead ? 'dead' : ''
+          this.state.boom ? 'boom' : dead ? 'dead' : ''
         }`}
       />
     )
