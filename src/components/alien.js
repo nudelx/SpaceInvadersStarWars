@@ -18,8 +18,6 @@ export default class Alien extends Component {
 
   render() {
     const { alienId, dead } = this.props
-    console.log("render fuck!!")
-
     return (
       <div
         id={alienId}
