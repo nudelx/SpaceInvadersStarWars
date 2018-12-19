@@ -3,7 +3,8 @@ import Alien from './alien'
 import { ALIENS } from '../constants/aliensConst'
 
 class AlienStage extends Component {
-  state = { aliens: ALIENS, dead: {}, boom: {} }
+  // state = { aliens: ALIENS, dead: {}, boom: {} }
+  state = { aliens: ALIENS, dead: {} }
   componentDidMount() {
     console.log('AlienStage => done on mount ', this.refs.alienStage)
     const { offsetTop, offsetHeight } = this.refs.alienStage
@@ -25,15 +26,16 @@ class AlienStage extends Component {
   setToDead(alienId) {
     const { dead, boom } = this.state
     dead[alienId] = dead[alienId] ? dead[alienId] + 1 : 1
-    boom[alienId] = boom[alienId] ? boom[alienId] + 1 : 1
-    this.setState(state => ({ dead: { ...dead }, boom: { ...boom } }))
+    // boom[alienId] = boom[alienId] ? boom[alienId] + 1 : 1
+    // this.setState(state => ({ dead: { ...dead }, boom: { ...boom } }))
+    this.setState(state => ({ dead: { ...dead } }))
   }
 
-  setToBoomed = (alienId, value) => {
-    const { boom } = this.state
-    boom[alienId] = boom[alienId] ? boom[alienId] + 1 : 1
-    this.setState(state => ({ boom: { ...boom } }))
-  }
+  // setToBoomed = (alienId, value) => {
+  //   const { boom } = this.state
+  //   boom[alienId] = boom[alienId] ? boom[alienId] + 1 : 1
+  //   this.setState(state => ({ boom: { ...boom } }))
+  // }
 
   checkByX(alienRef, x) {
     const pos = alienRef.alien.getBoundingClientRect()
@@ -46,15 +48,14 @@ class AlienStage extends Component {
   }
 
   killAlien(alienId) {
-    const aliens = this.state.aliens.map(item => {
+    this.state.aliens.forEach(item => {
       if (item.alienId === alienId) {
-        // item.dead = true
         this.setToDead(alienId)
       }
       return item
     })
 
-    this.setState(state => ({ aliens }))
+    // this.setState(state => ({ aliens }))
   }
 
   checkIfValidAlienRef(alienRef) {
@@ -88,12 +89,10 @@ class AlienStage extends Component {
         <div className="alien-box">
           {this.state.aliens.map(a => (
             <Alien
-              setToBoomed={this.setToBoomed}
               ref={a.alienId}
               dead={this.state.dead[a.alienId]}
               key={a.alienId}
               alienId={a.alienId}
-              shouldBoom={this.state.boom[a.alienId] === 1}
             />
           ))}
         </div>
