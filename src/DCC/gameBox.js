@@ -1,5 +1,6 @@
-import React, { Component } from "react"
-import Message from "../components/messageBox"
+import React, { Component } from 'react'
+import Message from '../components/messageBox'
+import * as PLAY from '../sfx/play.mp3'
 
 class GameBox extends Component {
   state = {
@@ -10,8 +11,8 @@ class GameBox extends Component {
     gameDone: false
   }
 
-  gameOverTxt = "Game Over!"
-  nextLevelTxt = "Impressive !"
+  gameOverTxt = 'Game Over!'
+  nextLevelTxt = 'Impressive !'
 
   setBoxState = stateData => this.setState({ ...stateData })
 
@@ -19,18 +20,25 @@ class GameBox extends Component {
 
   nextLevel = () => this.setState(state => ({ gameDone: false }))
 
+  playSound() {
+    const sound = new Audio(PLAY)
+    sound.volume = 0.3
+    sound.play()
+  }
+
   render() {
-    console.log("gameBox")
+    console.log('gameBox')
     const { children } = this.props
     const { gameOver, gameDone } = this.state
     return gameOver || gameDone ? (
       <Message
         message={gameOver ? this.gameOverTxt : this.nextLevelTxt}
         onclick={gameOver ? this.startGame : this.nextLevel}
-        buttonText={gameOver ? "Restart" : "Next"}
+        buttonText={gameOver ? 'Restart' : 'Next'}
       />
     ) : (
-      children({ setBoxState: this.setBoxState, ...this.state })
+      this.playSound() ||
+        children({ setBoxState: this.setBoxState, ...this.state })
     )
   }
 }
