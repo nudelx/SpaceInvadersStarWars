@@ -1,14 +1,16 @@
-import React, { Component } from "react"
-import Alien from "./alien"
-import { ALIENS } from "../constants/aliensConst"
-import * as BOOM from "../sfx/boom.mp3"
+import React, { Component } from 'react'
+import Alien from './alien'
+import { ALIENS } from '../constants/aliensConst'
+import * as BOOM from '../sfx/boom.mp3'
+import * as IMPRESSIVE from '../sfx/impressive.mp3'
+import * as GAMEOVER from '../sfx/gameover.mp3'
 
 class AlienStage extends Component {
   // state = { aliens: ALIENS, dead: {}, boom: {} }
   state = { aliens: ALIENS, dead: {}, alienBoxTop: 0, alienBox: 0 }
 
   componentDidMount() {
-    console.log("AlienStage => done on mount ", this.refs.alienStage)
+    console.log('AlienStage => done on mount ', this.refs.alienStage)
     const { offsetTop, offsetHeight } = this.refs.alienStage
     const position = {
       alienStageBottom: parseInt(offsetTop, 10) + parseInt(offsetHeight, 10),
@@ -26,7 +28,7 @@ class AlienStage extends Component {
   }
 
   moveStage() {
-    console.log("SSSSSS", this.refs.alienStage.getBoundingClientRect())
+    console.log('SSSSSS', this.refs.alienStage.getBoundingClientRect())
     this.setState(state => ({ alienBoxTop: state.alienBoxTop + 10 }))
     setTimeout(() => this.checkOverflow(), 0)
   }
@@ -52,14 +54,17 @@ class AlienStage extends Component {
         if (pos.top + pos.height >= this.props.shipTop) {
           this.stopTimer()
           this.props.setBoxState({ gameOver: true })
+          const audio = new Audio(GAMEOVER)
+          audio.play()
           return true
         }
       }
+      return false
     })
   }
 
   setToDead(alienId) {
-    const { dead, boom } = this.state
+    const { dead } = this.state
     dead[alienId] = dead[alienId] ? dead[alienId] + 1 : 1
     // boom[alienId] = boom[alienId] ? boom[alienId] + 1 : 1
     // this.setState(state => ({ dead: { ...dead }, boom: { ...boom } }))
@@ -69,6 +74,8 @@ class AlienStage extends Component {
         if (Object.keys(this.state.dead).length === this.state.aliens.length) {
           this.stopTimer()
           this.props.setBoxState({ gameDone: true })
+          const audio = new Audio(IMPRESSIVE)
+          audio.play()
         }
       }
     )
@@ -132,12 +139,12 @@ class AlienStage extends Component {
   }
 
   render() {
-    console.log("AlienStage", this.state)
+    console.log('AlienStage', this.state)
     return (
       <div
         ref="alienStage"
         className="alien-stage"
-        style={{ top: this.state.alienBoxTop ? this.state.alienBoxTop : "" }}
+        style={{ top: this.state.alienBoxTop ? this.state.alienBoxTop : '' }}
       >
         <div className="alien-box" ref={this.props.alienBox}>
           {this.state.aliens.map(a => (
