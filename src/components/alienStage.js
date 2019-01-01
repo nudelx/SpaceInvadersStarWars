@@ -1,16 +1,22 @@
-import React, { Component } from 'react'
-import Alien from './alien'
-import { ALIENS } from '../constants/aliensConst'
-import * as BOOM from '../sfx/boom.mp3'
-import * as IMPRESSIVE from '../sfx/impressive.mp3'
-import * as GAMEOVER from '../sfx/gameover.mp3'
+import React, { Component } from "react"
+import Alien from "./alien"
+import { ALIENS } from "../constants/aliensConst"
+import * as BOOM from "../sfx/boom.mp3"
+import * as IMPRESSIVE from "../sfx/impressive.mp3"
+import * as GAMEOVER from "../sfx/gameover.mp3"
 
 class AlienStage extends Component {
   // state = { aliens: ALIENS, dead: {}, boom: {} }
-  state = { aliens: ALIENS, dead: {}, alienBoxTop: 0, alienBox: 0 }
+  state = {
+    aliens: ALIENS,
+    dead: {},
+    alienBoxTop: 0,
+    alienBox: 0,
+    stageMoveDelta: 10
+  }
 
   componentDidMount() {
-    console.log('AlienStage => done on mount ', this.refs.alienStage)
+    console.log("AlienStage => done on mount ", this.refs.alienStage)
     const { offsetTop, offsetHeight } = this.refs.alienStage
     const position = {
       alienStageBottom: parseInt(offsetTop, 10) + parseInt(offsetHeight, 10),
@@ -28,8 +34,10 @@ class AlienStage extends Component {
   }
 
   moveStage() {
-    console.log('SSSSSS', this.refs.alienStage.getBoundingClientRect())
-    this.setState(state => ({ alienBoxTop: state.alienBoxTop + 10 }))
+    console.log("SSSSSS", this.refs.alienStage.getBoundingClientRect())
+    this.setState(state => ({
+      alienBoxTop: state.alienBoxTop + state.stageMoveDelta
+    }))
     setTimeout(() => this.checkOverflow(), 0)
   }
 
@@ -94,7 +102,11 @@ class AlienStage extends Component {
 
   checkByY(alienRef, y) {
     const pos = alienRef.alien.getBoundingClientRect()
-    return y > pos.top && y < pos.top + pos.height
+    return (
+      (y > pos.top && y < pos.top + pos.height) ||
+      (y + this.state.stageMoveDelta > pos.top &&
+        y + this.state.stageMoveDelta < pos.top + pos.height)
+    )
   }
 
   killAlien(alienId) {
@@ -139,12 +151,12 @@ class AlienStage extends Component {
   }
 
   render() {
-    console.log('AlienStage', this.state)
+    console.log("AlienStage", this.state)
     return (
       <div
         ref="alienStage"
         className="alien-stage"
-        style={{ top: this.state.alienBoxTop ? this.state.alienBoxTop : '' }}
+        style={{ top: this.state.alienBoxTop ? this.state.alienBoxTop : "" }}
       >
         <div className="alien-box" ref={this.props.alienBox}>
           {this.state.aliens.map(a => (
