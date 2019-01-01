@@ -16,9 +16,9 @@ class GameBox extends Component {
 
   setBoxState = stateData => this.setState({ ...stateData })
 
-  startGame = () => this.setState(state => ({ gameOver: false }))
+  startGame = () => this.setState(() => ({ gameOver: false }))
 
-  nextLevel = () => this.setState(state => ({ gameDone: false }))
+  nextLevel = () => this.setState(() => ({ gameDone: false }))
 
   playSound() {
     const sound = new Audio(PLAY)

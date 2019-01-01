@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 
 export default class Alien extends Component {
   state = {
@@ -21,9 +21,9 @@ export default class Alien extends Component {
     return (
       <div
         id={alienId}
-        ref={"alien"}
+        ref={'alien'}
         className={`alien alien-green ${
-          this.state.boom ? "boom" : dead ? "dead" : ""
+          this.state.boom ? 'boom' : dead ? 'dead' : ''
         }`}
       />
     )

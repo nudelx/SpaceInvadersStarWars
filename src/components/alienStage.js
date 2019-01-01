@@ -1,9 +1,9 @@
-import React, { Component } from "react"
-import Alien from "./alien"
-import { ALIENS } from "../constants/aliensConst"
-import * as BOOM from "../sfx/boom.mp3"
-import * as IMPRESSIVE from "../sfx/impressive.mp3"
-import * as GAMEOVER from "../sfx/gameover.mp3"
+import React, { Component } from 'react'
+import Alien from './alien'
+import { ALIENS } from '../constants/aliensConst'
+import * as BOOM from '../sfx/boom.mp3'
+import * as IMPRESSIVE from '../sfx/impressive.mp3'
+import * as GAMEOVER from '../sfx/gameover.mp3'
 
 class AlienStage extends Component {
   // state = { aliens: ALIENS, dead: {}, boom: {} }
@@ -16,7 +16,7 @@ class AlienStage extends Component {
   }
 
   componentDidMount() {
-    console.log("AlienStage => done on mount ", this.refs.alienStage)
+    console.log('AlienStage => done on mount ', this.refs.alienStage)
     const { offsetTop, offsetHeight } = this.refs.alienStage
     const position = {
       alienStageBottom: parseInt(offsetTop, 10) + parseInt(offsetHeight, 10),
@@ -34,7 +34,7 @@ class AlienStage extends Component {
   }
 
   moveStage() {
-    console.log("SSSSSS", this.refs.alienStage.getBoundingClientRect())
+    console.log('SSSSSS', this.refs.alienStage.getBoundingClientRect())
     this.setState(state => ({
       alienBoxTop: state.alienBoxTop + state.stageMoveDelta
     }))
@@ -52,6 +52,16 @@ class AlienStage extends Component {
     clearInterval(this.timer)
   }
 
+  playGameOver() {
+    const audio = new Audio(GAMEOVER)
+    audio.play()
+  }
+
+  playImpressive() {
+    const audio = new Audio(IMPRESSIVE)
+    audio.play()
+  }
+
   checkOverflow() {
     return Object.keys(this.refs).some(k => {
       const {
@@ -62,8 +72,8 @@ class AlienStage extends Component {
         if (pos.top + pos.height >= this.props.shipTop) {
           this.stopTimer()
           this.props.setBoxState({ gameOver: true })
-          const audio = new Audio(GAMEOVER)
-          audio.play()
+          this.playGameOver()
+
           return true
         }
       }
@@ -82,8 +92,7 @@ class AlienStage extends Component {
         if (Object.keys(this.state.dead).length === this.state.aliens.length) {
           this.stopTimer()
           this.props.setBoxState({ gameDone: true })
-          const audio = new Audio(IMPRESSIVE)
-          audio.play()
+          this.playImpressive()
         }
       }
     )
@@ -151,12 +160,12 @@ class AlienStage extends Component {
   }
 
   render() {
-    console.log("AlienStage", this.state)
+    console.log('AlienStage', this.state)
     return (
       <div
         ref="alienStage"
         className="alien-stage"
-        style={{ top: this.state.alienBoxTop ? this.state.alienBoxTop : "" }}
+        style={{ top: this.state.alienBoxTop ? this.state.alienBoxTop : '' }}
       >
         <div className="alien-box" ref={this.props.alienBox}>
           {this.state.aliens.map(a => (

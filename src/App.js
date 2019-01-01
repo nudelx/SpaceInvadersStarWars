@@ -19,7 +19,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header score={this.state} />
+        <Header />
         <BackGround />
         <SoundPlayer />
         <GameBox>
