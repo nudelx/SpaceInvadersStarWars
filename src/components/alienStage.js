@@ -12,11 +12,11 @@ class AlienStage extends Component {
     dead: {},
     alienBoxTop: 0,
     alienBox: 0,
-    stageMoveDelta: 10
+    stageMoveDelta: 10,
+    stageMoveTimer: 1000
   }
 
   componentDidMount() {
-    console.log('AlienStage => done on mount ', this.refs.alienStage)
     const { offsetTop, offsetHeight } = this.refs.alienStage
     const position = {
       alienStageBottom: parseInt(offsetTop, 10) + parseInt(offsetHeight, 10),
@@ -24,7 +24,7 @@ class AlienStage extends Component {
       alienHitCheck: this.alienHitCheck
     }
     this.props.setBoxState(position)
-    this.timer = setInterval(() => this.moveStage(), 1000)
+    this.timer = setInterval(() => this.moveStage(), this.state.stageMoveTimer)
     const pos = this.refs.alienStage.getBoundingClientRect()
 
     this.setState(() => ({
@@ -34,18 +34,10 @@ class AlienStage extends Component {
   }
 
   moveStage() {
-    console.log('SSSSSS', this.refs.alienStage.getBoundingClientRect())
     this.setState(state => ({
       alienBoxTop: state.alienBoxTop + state.stageMoveDelta
     }))
-    setTimeout(() => this.checkOverflow(), 0)
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextState.boom !== this.state.boom &&
-      nextState.dead === this.state.dead
-      ? false
-      : true
+    setTimeout(() => this.checkOverflow(), 0) /// next animation frame
   }
 
   stopTimer() {
@@ -84,8 +76,7 @@ class AlienStage extends Component {
   setToDead(alienId) {
     const { dead } = this.state
     dead[alienId] = dead[alienId] ? dead[alienId] + 1 : 1
-    // boom[alienId] = boom[alienId] ? boom[alienId] + 1 : 1
-    // this.setState(state => ({ dead: { ...dead }, boom: { ...boom } }))
+
     this.setState(
       state => ({ dead: { ...dead } }),
       () => {
