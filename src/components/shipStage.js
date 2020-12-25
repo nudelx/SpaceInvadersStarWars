@@ -1,7 +1,7 @@
-import React, { Component } from "react"
-import Bullet from "./bullet"
-import Ship from "./ship"
-import * as FIRE from "../sfx/fire.mp3"
+import React, { Component } from 'react'
+import Bullet from './bullet'
+import Ship from './ship'
+import * as FIRE from '../sfx/fire.mp3'
 
 export default class ShipStage extends Component {
   state = {
@@ -15,13 +15,18 @@ export default class ShipStage extends Component {
     bulletOffsetY: 5,
     bulletId: 0,
     map: {
-      ArrowLeft: "left",
-      ArrowRight: "right",
-      Space: "fire"
+      ArrowLeft: 'left',
+      ArrowRight: 'right',
+      Space: 'fire',
+      Quote: 'right',
+      KeyK:'fire',
+      KeyS:'left',
+      KeyG:'fire',
+
     },
     calcStep: {
-      left: { axis: "x", sign: -1 },
-      right: { axis: "x", sign: 1 }
+      left: { axis: 'x', sign: -1 },
+      right: { axis: 'x', sign: 1 }
     },
     bullets: []
   }
@@ -29,7 +34,7 @@ export default class ShipStage extends Component {
   updatePosition = e => {
     const { calcStep, x, step, map } = this.state
     const { [e.code]: mapName } = map
-    if (mapName === "fire") this.fireBullet()
+    if (mapName === 'fire') this.fireBullet()
     if (!calcStep[mapName]) return
     const {
       [mapName]: { sign }
@@ -57,10 +62,10 @@ export default class ShipStage extends Component {
     })
 
   componentDidMount() {
-    const body = document.querySelector("body")
-    body.addEventListener("keydown", this.updatePosition)
+    const body = document.querySelector('body')
+    body.addEventListener('keydown', this.updatePosition)
     // body.addEventListener("keyup", this.updatePosition)
-    const stage = document.querySelector("div.ship-stage")
+    const stage = document.querySelector('div.ship-stage')
     this.setState(
       {
         stageWidth: stage.offsetWidth,
@@ -72,7 +77,7 @@ export default class ShipStage extends Component {
   }
 
   render() {
-    console.log("render ship stage", this.props)
+    console.log('render ship stage', this.props)
     const {
       x,
       y,

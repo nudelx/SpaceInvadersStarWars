@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 
 export default class Bullet extends Component {
   constructor(props) {
@@ -59,7 +59,7 @@ export default class Bullet extends Component {
     const { x, y } = this.state
     return (
       <div
-        ref={"bullet"}
+        ref={'bullet'}
         className="bullet bullet-rotation"
         style={{ top: y, left: x }}
       />
