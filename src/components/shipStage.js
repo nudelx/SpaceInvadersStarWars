@@ -17,7 +17,12 @@ export default class ShipStage extends Component {
     map: {
       ArrowLeft: 'left',
       ArrowRight: 'right',
-      Space: 'fire'
+      Space: 'fire',
+      Quote: 'right',
+      KeyK:'fire',
+      KeyS:'left',
+      KeyG:'fire',
+
     },
     calcStep: {
       left: { axis: 'x', sign: -1 },
